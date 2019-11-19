@@ -5,19 +5,16 @@ import ru.lanit.Exception.NoEntityException;
 import ru.lanit.constraint.PersonAgeConstraint;
 import ru.lanit.entity.Person;
 import ru.lanit.repository.PersonRepositoryInterface;
-import ru.lanit.service.PersonService;
-
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class PersonAgeValidator implements ConstraintValidator<PersonAgeConstraint,Long>{
+public class PersonAgeValidator implements ConstraintValidator<PersonAgeConstraint, Long> {
 
     private PersonAgeConstraint constraint;
-    private PersonService personService;
     private PersonRepositoryInterface personRepository;
 
     @Autowired
-    public PersonAgeValidator(PersonRepositoryInterface personRepository){
+    public PersonAgeValidator(PersonRepositoryInterface personRepository) {
         this.personRepository = personRepository;
     }
 
@@ -32,8 +29,7 @@ public class PersonAgeValidator implements ConstraintValidator<PersonAgeConstrai
         try {
             Person person = personRepository.findById(id).orElseThrow(() -> new NoEntityException());
             return person.getAge() > constraint.minAge();
-        }
-        catch (NoEntityException e) {
+        } catch (NoEntityException e) {
             return false;
         }
     }

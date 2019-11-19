@@ -6,18 +6,19 @@ import ru.lanit.constraint.PersonAgeConstraint;
 import ru.lanit.constraint.EntityState;
 import ru.lanit.constraint.PersonStateConstraint;
 import ru.lanit.dto.CarModel;
-import ru.lanit.dto.desirializer.ModelDeserialize;
-
+import ru.lanit.dto.desirializer.CarModelDeserialize;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 public class Car {
 
-    @NotNull @Min(1) @CarStateConstraint(existence = EntityState.NOT_EXIST)
+    @NotNull
+    @Min(1)
+    @CarStateConstraint(existence = EntityState.NOT_EXIST)
     private long id;
 
     @NotNull
-    @JsonDeserialize(using = ModelDeserialize.class, as = CarModel.class)
+    @JsonDeserialize(using = CarModelDeserialize.class, as = CarModel.class)
     private CarModel model;
 
     @NotNull

@@ -1,13 +1,12 @@
 package ru.lanit.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.lanit.Exception.NoEntityException;
 import ru.lanit.constraint.EntityState;
 import ru.lanit.constraint.PersonStateConstraint;
-import ru.lanit.dto.PersonDto;
 import ru.lanit.service.PersonService;
-
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -16,6 +15,7 @@ public class PersonController {
 
     private PersonService personService;
 
+    @Autowired
     public PersonController(PersonService personService) {
         this.personService = personService;
     }

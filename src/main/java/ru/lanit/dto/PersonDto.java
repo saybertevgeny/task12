@@ -1,7 +1,6 @@
 package ru.lanit.dto;
 
 import java.time.LocalDate;
-import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +21,7 @@ public class PersonDto {
         this.cars = new ArrayList<>();
     }
 
-    public PersonDto(long id, String name, LocalDate birthDay,List<CarDto> cars) {
+    public PersonDto(long id, String name, LocalDate birthDay, List<CarDto> cars) {
         this.id = id;
         this.name = name;
         this.birthDay = birthDay;

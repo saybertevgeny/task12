@@ -55,6 +55,7 @@ public class PersonService {
         return personRepository.count();
     }
 
+    @Transactional
     public void drop(){
         personRepository.deleteAll();
     }

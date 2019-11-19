@@ -20,7 +20,8 @@ public class Car {
     @JoinColumn(name = "owner_id")
     private Person owner;
 
-    public Car(){}
+    public Car() {
+    }
 
     public long getId() {
         return id;

@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ModelDeserialize extends JsonDeserializer {
+public class CarModelDeserialize extends JsonDeserializer {
 
     @Override
     public CarModel deserialize(JsonParser jsonParser, DeserializationContext context) throws IOException {

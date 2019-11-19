@@ -6,7 +6,7 @@ public class CarModel {
 
     private String vendor;
 
-    public CarModel(String model, String vendor){
+    public CarModel(String model, String vendor) {
         this.model = model;
         this.vendor = vendor;
     }

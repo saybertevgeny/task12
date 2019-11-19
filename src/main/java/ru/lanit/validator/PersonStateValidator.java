@@ -3,16 +3,15 @@ package ru.lanit.validator;
 import ru.lanit.constraint.EntityState;
 import ru.lanit.constraint.PersonStateConstraint;
 import ru.lanit.repository.PersonRepositoryInterface;
-
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class PersonStateValidator implements ConstraintValidator<PersonStateConstraint,Long>{
+public class PersonStateValidator implements ConstraintValidator<PersonStateConstraint, Long> {
 
     private PersonRepositoryInterface personRepository;
     private PersonStateConstraint constraint;
 
-    public PersonStateValidator(PersonRepositoryInterface personRepository){
+    public PersonStateValidator(PersonRepositoryInterface personRepository) {
         this.personRepository = personRepository;
     }
 
@@ -23,10 +22,9 @@ public class PersonStateValidator implements ConstraintValidator<PersonStateCons
 
     @Override
     public boolean isValid(Long id, ConstraintValidatorContext constraintValidatorContext) {
-        if(constraint.existence().equals(EntityState.EXIST)) {
+        if (constraint.existence().equals(EntityState.EXIST)) {
             return personRepository.existsById(id);
-        }
-        else{
+        } else {
             return !personRepository.existsById(id);
         }
     }

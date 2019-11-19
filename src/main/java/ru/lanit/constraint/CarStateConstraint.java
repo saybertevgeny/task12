@@ -1,8 +1,6 @@
 package ru.lanit.constraint;
 
 import ru.lanit.validator.CarStateValidator;
-import ru.lanit.validator.PersonStateValidator;
-
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.ElementType;

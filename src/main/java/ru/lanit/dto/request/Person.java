@@ -2,7 +2,6 @@ package ru.lanit.dto.request;
 
 import ru.lanit.constraint.EntityState;
 import ru.lanit.constraint.PersonStateConstraint;
-
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -11,13 +10,16 @@ import java.time.LocalDate;
 
 public class Person {
 
-    @NotNull @Min(1) @PersonStateConstraint(existence = EntityState.NOT_EXIST)
+    @NotNull
+    @Min(1)
+    @PersonStateConstraint(existence = EntityState.NOT_EXIST)
     private long id;
 
     @NotBlank
     private String name;
 
-    @NotNull @Past
+    @NotNull
+    @Past
     private LocalDate birthDay;
 
     public long getId() {

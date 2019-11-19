@@ -2,6 +2,7 @@ package ru.lanit.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import ru.lanit.dto.request.Car;
 import ru.lanit.entity.Person;
 import ru.lanit.repository.CarRepositoryInterface;
@@ -38,6 +39,7 @@ public class CarService {
         return carRepository.getCountUniqueVendor();
     }
 
+    @Transactional
     public void drop(){
         carRepository.deleteAll();
     }
