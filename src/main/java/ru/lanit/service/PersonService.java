@@ -2,10 +2,16 @@ package ru.lanit.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import ru.lanit.Exception.NoEntityException;
+import ru.lanit.dto.CarDto;
 import ru.lanit.dto.PersonDto;
+import ru.lanit.entity.Car;
 import ru.lanit.entity.Person;
 import ru.lanit.repository.PersonRepositoryInterface;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class PersonService {
@@ -32,6 +38,25 @@ public class PersonService {
                 .setName(requestPerson.getName())
                 .setId(requestPerson.getId());
         personRepository.save(person);
+    }
+
+    @Transactional
+    public PersonDto getWithCars(long personId) throws NoEntityException{
+        Person person = personRepository.findById(personId).orElseThrow(() -> new NoEntityException());
+        List<Car> cars = person.getCars();
+        List<CarDto> listCarDto = new ArrayList<>();
+        for(Car car: cars){
+            listCarDto.add(new CarDto(car.getId(),car.getModel(),car.getVendor(),car.getHorsepower()));
+        }
+        return new PersonDto(person.getId(),person.getName(),person.getBirthDay(),listCarDto);
+    }
+
+    public long getCountPersons(){
+        return personRepository.count();
+    }
+
+    public void drop(){
+        personRepository.deleteAll();
     }
 
 }

@@ -29,4 +29,16 @@ public class CarService {
                 .setOwner(person);
         carRepository.save(carEntity);
     }
+
+    public long getCount(){
+        return carRepository.count();
+    }
+
+    public long getCountUniqueVendor(){
+        return carRepository.getCountUniqueVendor();
+    }
+
+    public void drop(){
+        carRepository.deleteAll();
+    }
 }

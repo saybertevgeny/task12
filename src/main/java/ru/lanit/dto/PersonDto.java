@@ -2,6 +2,8 @@ package ru.lanit.dto;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PersonDto {
 
@@ -11,10 +13,20 @@ public class PersonDto {
 
     private LocalDate birthDay;
 
+    private List<CarDto> cars;
+
     public PersonDto(long id, String name, LocalDate birthDay) {
         this.id = id;
         this.name = name;
         this.birthDay = birthDay;
+        this.cars = new ArrayList<>();
+    }
+
+    public PersonDto(long id, String name, LocalDate birthDay,List<CarDto> cars) {
+        this.id = id;
+        this.name = name;
+        this.birthDay = birthDay;
+        this.cars = cars;
     }
 
     public long getId() {
@@ -41,7 +53,11 @@ public class PersonDto {
         this.birthDay = birthDay;
     }
 
-    public int getAge(){
-        return Period.between(birthDay,LocalDate.now()).getYears();
+    public List<CarDto> getCars() {
+        return cars;
+    }
+
+    public void setCars(List<CarDto> cars) {
+        this.cars = cars;
     }
 }

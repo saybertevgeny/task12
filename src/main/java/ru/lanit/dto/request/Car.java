@@ -5,7 +5,7 @@ import ru.lanit.constraint.CarStateConstraint;
 import ru.lanit.constraint.PersonAgeConstraint;
 import ru.lanit.constraint.EntityState;
 import ru.lanit.constraint.PersonStateConstraint;
-import ru.lanit.dto.Model;
+import ru.lanit.dto.CarModel;
 import ru.lanit.dto.desirializer.ModelDeserialize;
 
 import javax.validation.constraints.Min;
@@ -17,8 +17,8 @@ public class Car {
     private long id;
 
     @NotNull
-    @JsonDeserialize(using = ModelDeserialize.class, as = Model.class)
-    private Model model;
+    @JsonDeserialize(using = ModelDeserialize.class, as = CarModel.class)
+    private CarModel model;
 
     @NotNull
     @Min(0)
@@ -37,11 +37,11 @@ public class Car {
         this.id = id;
     }
 
-    public Model getModel() {
+    public CarModel getModel() {
         return model;
     }
 
-    public void setModel(Model model) {
+    public void setModel(CarModel model) {
         this.model = model;
     }
 

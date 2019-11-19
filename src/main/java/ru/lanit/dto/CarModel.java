@@ -1,12 +1,12 @@
 package ru.lanit.dto;
 
-public class Model {
+public class CarModel {
 
     private String model;
 
     private String vendor;
 
-    public Model(String model, String vendor){
+    public CarModel(String model, String vendor){
         this.model = model;
         this.vendor = vendor;
     }

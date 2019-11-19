@@ -3,6 +3,8 @@ package ru.lanit.validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.lanit.Exception.NoEntityException;
 import ru.lanit.constraint.PersonAgeConstraint;
+import ru.lanit.entity.Person;
+import ru.lanit.repository.PersonRepositoryInterface;
 import ru.lanit.service.PersonService;
 
 import javax.validation.ConstraintValidator;
@@ -12,10 +14,11 @@ public class PersonAgeValidator implements ConstraintValidator<PersonAgeConstrai
 
     private PersonAgeConstraint constraint;
     private PersonService personService;
+    private PersonRepositoryInterface personRepository;
 
     @Autowired
-    public PersonAgeValidator(PersonService personService){
-        this.personService = personService;
+    public PersonAgeValidator(PersonRepositoryInterface personRepository){
+        this.personRepository = personRepository;
     }
 
     @Override
@@ -25,8 +28,10 @@ public class PersonAgeValidator implements ConstraintValidator<PersonAgeConstrai
 
     @Override
     public boolean isValid(Long id, ConstraintValidatorContext constraintValidatorContext) {
+
         try {
-            return personService.getById(id).getAge() > constraint.minAge();
+            Person person = personRepository.findById(id).orElseThrow(() -> new NoEntityException());
+            return person.getAge() > constraint.minAge();
         }
         catch (NoEntityException e) {
             return false;
