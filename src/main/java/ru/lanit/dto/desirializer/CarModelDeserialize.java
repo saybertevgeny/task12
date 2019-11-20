@@ -20,8 +20,8 @@ public class CarModelDeserialize extends JsonDeserializer {
             return null;
         }
 
-        String model = matcher.group(1);
-        String vendor = matcher.group(2);
+        String vendor = matcher.group(1);
+        String model = matcher.group(2);
         return new CarModel(model,vendor);
     }
 }

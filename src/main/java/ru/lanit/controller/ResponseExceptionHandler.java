@@ -12,7 +12,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import ru.lanit.dto.ApiError;
 
 @ControllerAdvice
-public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
+public class    ResponseExceptionHandler extends ResponseEntityExceptionHandler {
 
     public ResponseExceptionHandler(){
         super();
@@ -20,10 +20,6 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        if( ex.getBindingResult().getAllErrors().size() > 0) {
-            ObjectError error = ex.getBindingResult().getAllErrors().get(0);
-            return handleExceptionInternal(ex, new ApiError(error.getDefaultMessage()), headers, HttpStatus.BAD_REQUEST, request);
-        }
         return handleExceptionInternal(ex, new ApiError("Ошибка валидации"), headers, HttpStatus.BAD_REQUEST, request);
     }
 

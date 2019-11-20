@@ -9,7 +9,6 @@ import ru.lanit.dto.PersonDto;
 import ru.lanit.entity.Car;
 import ru.lanit.entity.Person;
 import ru.lanit.repository.PersonRepositoryInterface;
-
 import java.util.ArrayList;
 import java.util.List;
 

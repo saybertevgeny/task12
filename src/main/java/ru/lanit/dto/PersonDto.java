@@ -1,6 +1,7 @@
 package ru.lanit.dto;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,21 +11,21 @@ public class PersonDto {
 
     private String name;
 
-    private LocalDate birthDay;
+    private String birthDay;
 
     private List<CarDto> cars;
 
     public PersonDto(long id, String name, LocalDate birthDay) {
         this.id = id;
         this.name = name;
-        this.birthDay = birthDay;
+        this.birthDay = birthDay.format(DateTimeFormatter.ofPattern("dd.MM.yyy"));
         this.cars = new ArrayList<>();
     }
 
     public PersonDto(long id, String name, LocalDate birthDay, List<CarDto> cars) {
         this.id = id;
         this.name = name;
-        this.birthDay = birthDay;
+        this.birthDay = birthDay.format(DateTimeFormatter.ofPattern("dd.MM.yyy"));
         this.cars = cars;
     }
 
@@ -44,11 +45,11 @@ public class PersonDto {
         this.name = name;
     }
 
-    public LocalDate getBirthDay() {
+    public String getBirthDay() {
         return birthDay;
     }
 
-    public void setBirthDay(LocalDate birthDay) {
+    public void setBirthDay(String birthDay) {
         this.birthDay = birthDay;
     }
 
