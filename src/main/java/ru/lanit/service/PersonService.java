@@ -33,14 +33,14 @@ public class PersonService {
 
     public void save(ru.lanit.dto.request.Person requestPerson) {
         Person person = new Person();
-        person.setBirthDay(requestPerson.getBirthDay())
+        person.setBirthDay(requestPerson.getBirthDate())
                 .setName(requestPerson.getName())
                 .setId(requestPerson.getId());
         personRepository.save(person);
     }
 
     @Transactional
-    public PersonDto getWithCars(long personId) throws NoEntityException{
+    public PersonDto getWithCars(Long personId) throws NoEntityException{
         Person person = personRepository.findById(personId).orElseThrow(() -> new NoEntityException());
         List<Car> cars = person.getCars();
         List<CarDto> listCarDto = new ArrayList<>();

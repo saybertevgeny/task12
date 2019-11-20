@@ -13,7 +13,7 @@ public class CarModelDeserialize extends JsonDeserializer {
     @Override
     public CarModel deserialize(JsonParser jsonParser, DeserializationContext context) throws IOException {
         String data = jsonParser.getText().trim();
-        Matcher matcher = Pattern.compile("^([A-z0-9_]+)-([A-z0-9_]+)$").matcher(data);
+        Matcher matcher = Pattern.compile("^([A-z0-9_]+)-([A-z0-9_-]+)$").matcher(data);
 
         if(!matcher.find()){
             context.handleUnexpectedToken(this.getClass(),jsonParser);

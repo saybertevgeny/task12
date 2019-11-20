@@ -1,5 +1,6 @@
 package ru.lanit.controller;
 
+import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,9 +13,9 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import ru.lanit.dto.ApiError;
 
 @ControllerAdvice
-public class    ResponseExceptionHandler extends ResponseEntityExceptionHandler {
+public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
 
-    public ResponseExceptionHandler(){
+    public ResponseExceptionHandler() {
         super();
     }
 
@@ -27,4 +28,8 @@ public class    ResponseExceptionHandler extends ResponseEntityExceptionHandler 
     protected ResponseEntity<Object> handleHttpMessageNotReadable(final HttpMessageNotReadableException ex, final HttpHeaders headers, final HttpStatus status, final WebRequest request) {
         return handleExceptionInternal(ex, new ApiError("Ошибка валидации"), headers, HttpStatus.BAD_REQUEST, request);
     }
+
+//    protected ResponseEntity<Object> handleTypeMismatch(TypeMismatchException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+//        return handleExceptionInternal(ex, new ApiError("Ошибка валидации"), headers, HttpStatus.BAD_REQUEST, request);
+//    }
 }

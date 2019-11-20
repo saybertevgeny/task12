@@ -7,7 +7,9 @@ import ru.lanit.Exception.NoEntityException;
 import ru.lanit.constraint.EntityState;
 import ru.lanit.constraint.PersonStateConstraint;
 import ru.lanit.service.PersonService;
+
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @RestController
@@ -27,11 +29,13 @@ public class PersonController {
     }
 
     @RequestMapping(value = "/personwithcars", method = RequestMethod.GET)
-    public ResponseEntity personWithCars(@NotNull @PersonStateConstraint(existence = EntityState.EXIST) long personid){
+    public ResponseEntity personWithCars(@NotNull @PersonStateConstraint(existence = EntityState.EXIST) Long personid) {
         try {
+            if (personid == null) {
+                return ResponseEntity.badRequest().build();
+            }
             return ResponseEntity.ok(personService.getWithCars(personid));
-        }
-        catch (NoEntityException e){
+        } catch (NoEntityException e) {
             return ResponseEntity.notFound().build();
         }
     }

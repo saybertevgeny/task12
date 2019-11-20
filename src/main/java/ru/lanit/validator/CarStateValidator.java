@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import ru.lanit.constraint.CarStateConstraint;
 import ru.lanit.constraint.EntityState;
 import ru.lanit.repository.CarRepositoryInterface;
+
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
@@ -24,6 +25,8 @@ public class CarStateValidator implements ConstraintValidator<CarStateConstraint
 
     @Override
     public boolean isValid(Long id, ConstraintValidatorContext constraintValidatorContext) {
+        if (id == 0)
+            return false;
         if (constraint.existence().equals(EntityState.EXIST)) {
             return carRepository.existsById(id);
         } else {

@@ -7,7 +7,6 @@ import javax.persistence.*;
 public class Car {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     private String vendor;

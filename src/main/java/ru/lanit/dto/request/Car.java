@@ -8,12 +8,12 @@ import ru.lanit.constraint.PersonStateConstraint;
 import ru.lanit.dto.CarModel;
 import ru.lanit.dto.desirializer.CarModelDeserialize;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class Car {
 
     @NotNull
-    @Min(1)
     @CarStateConstraint(existence = EntityState.NOT_EXIST)
     private long id;
 
@@ -22,7 +22,7 @@ public class Car {
     private CarModel model;
 
     @NotNull
-    @Min(0)
+    @Min(1)
     private int horsepower;
 
     @NotNull

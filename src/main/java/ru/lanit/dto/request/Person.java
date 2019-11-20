@@ -1,7 +1,9 @@
 package ru.lanit.dto.request;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import ru.lanit.constraint.EntityState;
 import ru.lanit.constraint.PersonStateConstraint;
+import ru.lanit.dto.desirializer.LocalDateDeserialize;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -11,16 +13,16 @@ import java.time.LocalDate;
 public class Person {
 
     @NotNull
-    @Min(1)
     @PersonStateConstraint(existence = EntityState.NOT_EXIST)
     private long id;
 
-    @NotBlank
+    @NotNull
     private String name;
 
     @NotNull
     @Past
-    private LocalDate birthDay;
+    @JsonDeserialize(using = LocalDateDeserialize.class, as = LocalDate.class)
+    private LocalDate birthdate;
 
     public long getId() {
         return id;
@@ -38,11 +40,11 @@ public class Person {
         this.name = name;
     }
 
-    public LocalDate getBirthDay() {
-        return birthDay;
+    public LocalDate getBirthDate() {
+        return birthdate;
     }
 
-    public void setBirthDay(LocalDate birthDay) {
-        this.birthDay = birthDay;
+    public void setBirthDate(LocalDate birthDay) {
+        this.birthdate = birthDay;
     }
 }
